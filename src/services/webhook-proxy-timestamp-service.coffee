@@ -8,7 +8,7 @@ class WebhookProxyTimestampService
 
     request.post url, {json: body}, (error, response) =>
       return callback @_createError('request error', 500) if error?
-      return callback @_responseError response if response.statusCode > 299
+      return callback @_responseError body, response if response.statusCode > 299
       callback()
 
   _createError: (message='Internal Service Error', code=500) =>
@@ -16,9 +16,9 @@ class WebhookProxyTimestampService
     error.code = code
     return error
 
-  _responseError: (response) =>
-    debug 'responseError', JSON.stringify(response.body, null, 2)
-    return @_createError("upstream error: #{response.statusCode}\n#{JSON.stringify(response.body, null, 2)}", 502)
+  _responseError: (requestBody, response) =>
+    debug 'responseError', JSON.stringify({request: requestBody, response: response.body}, null, 2)
+    return @_createError("upstream error: #{response.statusCode}", 502)
 
 
 module.exports = WebhookProxyTimestampService
