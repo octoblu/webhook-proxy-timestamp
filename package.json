@@ -1,6 +1,6 @@
 {
   "name": "webhook-proxy-timestamp",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "webhook-proxy-timestamp an Octoblu Service",
   "keywords": [
     "Octoblu",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "coffee-script": "^1.10.0",
-    "debug": "^2.2.0",
+    "debug": "^2.6.3",
     "envalid": "^2.4.2",
     "express-meshblu-auth": "^9.0.2",
     "express-octoblu": "^3.0.0",
