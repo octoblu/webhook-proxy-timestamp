@@ -1,6 +1,6 @@
 {
   "name": "webhook-proxy-timestamp",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "webhook-proxy-timestamp an Octoblu Service",
   "keywords": [
     "Octoblu",
@@ -19,13 +19,12 @@
   },
   "scripts": {
     "start": "node command.js",
-    "test": "echo 'No tests! :-D'",
+    "test": "mocha",
     "coverage": "nyc npm test",
     "mocha:json": "mocha --reporter json > coverage/mocha.json",
     "test:watch": "mocha -w -R mocha-multi --reporter-options spec=-,mocha-osx-reporter=-"
   },
   "devDependencies": {
-    "@octoblu/shmock": "^0.9.1",
     "chai": "^3.5.0",
     "chai-subset": "^1.3.0",
     "env-test": "^1.0.0",

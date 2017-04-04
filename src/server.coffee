@@ -6,8 +6,6 @@ WebhookProxyTimestampService = require './services/webhook-proxy-timestamp-servi
 class Server
   constructor: (options) ->
     { @logFn, @disableLogging, @port } = options
-    { @meshbluConfig } = options
-    throw new Error 'Missing meshbluConfig' unless @meshbluConfig?
 
   address: =>
     @server.address()
@@ -16,8 +14,7 @@ class Server
     app = octobluExpress({ @logFn, @disableLogging })
 
     webhookProxyTimestampService = new WebhookProxyTimestampService
-    router = new Router {@meshbluConfig, webhookProxyTimestampService}
-
+    router = new Router { webhookProxyTimestampService }
     router.route app
 
     @server = app.listen @port, callback
@@ -26,7 +23,7 @@ class Server
   stop: (callback) =>
     @server.close callback
 
-  destroy: =>
-    @server.destroy()
+  destroy: (done) =>
+    @server.destroy(done)
 
 module.exports = Server
